@@ -1,18 +1,20 @@
 add_library(MarketData
-        BinanceWebSocket.h
-        BinanceWebSocket.cpp
+        BinanceFeed.h
+        BinanceFeed.cpp
 )
 
 target_sources(MarketData
         PUBLIC
-            BinanceWebSocket.h
+        BinanceFeed.h
         PRIVATE
-            BinanceWebSocket.cpp
+        BinanceFeed.cpp
 )
 
 find_package(Boost REQUIRED)
+find_package(nlohmann_json REQUIRED)
 
 target_link_libraries(MarketData
         PUBLIC
             Boost::headers
+            nlohmann_json::nlohmann_json
 )
