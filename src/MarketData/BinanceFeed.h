@@ -2,8 +2,8 @@
 // Created by alexl on 8/17/2026.
 //
 
-#ifndef BINANCEWEBSOCKET_H
-#define BINANCEWEBSOCKET_H
+#ifndef BINANCEFEED_H
+#define BINANCEFEED_H
 
 #include <vector>
 
@@ -13,7 +13,7 @@ namespace md {
         BinanceFeed();
         void run();
 
-    private:
+    // private:
         struct OrderBookSnapshot {
             long long last_update_id;
             std::vector<std::pair<double, double>> bids;
