@@ -10,13 +10,14 @@ namespace md {
     BinanceFeed::BinanceFeed() = default;
 
     void BinanceFeed::run() {
-        // jthread for the websocket loop
+        // JThread for the websocket loop
         // asio::io_context ioc;
 
         OrderBookSnapshot snapshot = fetch_order_book_snapshot();
     }
 
-    /// Fetches an initial state of BTCUSDT order book from Binance's OrderbookSnapshot REST endpoint.
+    /// Fetches an order book snapshot from Binance's REST endpoint.
+    /// The snapshot is used as an initial state of our local order book.
     OrderBookSnapshot BinanceFeed::fetch_order_book_snapshot() {
         std::cout << "[REST] Sending order book snapshot request..." << std::endl;
 
@@ -54,7 +55,7 @@ namespace md {
                 snapshot.asks.emplace_back(price, quantity);
             }
         }
-        catch (const json::exception& e) {
+        catch (const std::exception& e) {
             std::cerr << "[Error] Failed to parse order book snapshot: " << e.what() << std::endl;
         }
 

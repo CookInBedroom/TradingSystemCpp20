@@ -2,10 +2,11 @@
 #define BINANCEFEED_H
 
 #include <vector>
+#include <cstdint>
 
 namespace md {
     struct OrderBookSnapshot {
-        long long last_update_id;
+        std::int64_t last_update_id;
         std::vector<std::pair<double, double>> bids;
         std::vector<std::pair<double, double>> asks;
     };
@@ -13,10 +14,10 @@ namespace md {
     class BinanceFeed {
     public:
         BinanceFeed();
-        static void run();
+        void run();
 
     // private:
-        static OrderBookSnapshot fetch_order_book_snapshot();
+        OrderBookSnapshot fetch_order_book_snapshot();
     };
 }
 
